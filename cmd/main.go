@@ -1,18 +1,32 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/yourname/base-service/internal/handler"
+	"fmt"
+	"log"
+
+	"github.com/Anthya1104/gin-base-service/internal/app/router"
+	"github.com/spf13/viper"
 )
 
 func main() {
-    r := gin.Default()
 
-    r.GET("/health", func(c *gin.Context) {
-        c.JSON(200, gin.H{"status": "ok"})
-    })
+	// init viper
+	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath(".")
 
-    r.GET("/limiter", handler.RateLimiterHandler)
+	if err := viper.ReadInConfig(); err != nil {
+		panic(fmt.Errorf("fatal error config file: %w", err))
+	}
 
-    r.Run(":8080")
+	port := viper.GetInt("server.port")
+	if port == 0 {
+		port = 8080
+	}
+
+	r := router.SetupRouter()
+
+	if err := r.Run(fmt.Sprintf(":%d", port)); err != nil {
+		log.Fatal(err)
+	}
 }
