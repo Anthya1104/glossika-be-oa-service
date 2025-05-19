@@ -1,0 +1,13 @@
+version: "1.0.0"
+database:
+  host: localhost
+  port: 5432
+  name: mydb
+  user: user
+  password: password
+server:
+  host: localhost
+  port: 9999
+  env: DEVELOP
+logging:
+  level: DEBUG
