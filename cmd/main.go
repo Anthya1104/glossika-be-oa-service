@@ -9,9 +9,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/Anthya1104/gin-base-service/internal/app/database"
 	"github.com/Anthya1104/gin-base-service/internal/app/router"
 	"github.com/Anthya1104/gin-base-service/pkg/config"
 	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"github.com/Anthya1104/gin-base-service/pkg/orm"
 )
 
 func main() {
@@ -19,6 +21,21 @@ func main() {
 	// init env
 	if err := config.Setup(); err != nil {
 		log.L.Fatal(err)
+	}
+
+	// setup db
+	if err := database.NewSqlDb(orm.Config{
+		Host:     config.EnvVariable.SQLHost,
+		Port:     config.EnvVariable.SQLPort,
+		Database: config.EnvVariable.SQLDatabase,
+		Username: config.EnvVariable.SQLUsername,
+		Password: config.EnvVariable.SQLPassword,
+	}); err != nil {
+		log.L.Fatalf("failed to connect database: %v", err)
+	}
+
+	if err := database.AutoMigrate(database.GetSqlDb().Orm); err != nil {
+		log.L.Fatalf("auto migrate failed: %v", err)
 	}
 
 	r := router.SetupRouter()
