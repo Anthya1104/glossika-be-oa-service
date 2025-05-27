@@ -80,6 +80,8 @@ func RegisterHandler(c *gin.Context) {
 		return
 	}
 
-	respondSuccess(c, http.StatusOK, &model.CommonSuccessRes{}, false)
+	resp := model.CommonSuccessRes{}
+
+	respondSuccess(c, http.StatusOK, &resp, false)
 
 }
