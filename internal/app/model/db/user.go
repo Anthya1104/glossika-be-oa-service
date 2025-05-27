@@ -9,5 +9,6 @@ func (UserInfo) TableName() string {
 }
 
 type UserInfo struct {
-	Id string `gorm:"type:varchar(50);primary_key;column:id"`
+	Id       string `gorm:"type:varchar(50);primary_key;column:id"`
+	UserName string `gorm:"type:varchar(50);not null;column:user_name"`
 }

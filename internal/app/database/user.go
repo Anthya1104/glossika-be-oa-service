@@ -6,14 +6,14 @@ import (
 
 	dbModel "github.com/Anthya1104/gin-base-service/internal/app/model/db"
 	"github.com/Anthya1104/gin-base-service/pkg/errcode"
+	"github.com/Anthya1104/gin-base-service/pkg/log"
 )
 
-func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, accountId string) (userInfo dbModel.UserInfo, wrapErr errcode.WrapErr) {
+func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, userId string) (userInfo dbModel.UserInfo, wrapErr errcode.WrapErr) {
 	err := db.Orm.WithContext(ctx).
 		Model(&dbModel.UserInfo{}).
-		Where("user_id = ? AND (expired_at IS NULL OR expired_at > ?)", accountId).
-		Select("COALESCE(SUM(remaining_points), 0)").
-		Row().Scan(&userInfo.Id)
+		Where("id = ? ", userId).
+		Find(&userInfo).Error
 
 	if err != nil {
 		wrapErr = errcode.WrapErr{
@@ -22,6 +22,7 @@ func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, accountId string) (use
 			RawErr:     err,
 		}
 	}
+	log.C(ctx).Debugf("GetUserInfoByUserId userId=%v, userInfo=%v, err=%v", userId, userInfo, wrapErr.RawErr)
 
 	return
 }

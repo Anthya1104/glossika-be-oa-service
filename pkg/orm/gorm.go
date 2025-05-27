@@ -18,11 +18,7 @@ type Config struct {
 	Password string
 }
 
-// TODO: 看point-service 的 gorm.go 整理下面, log 應該要稍微改一下，或是先抽掉
 func SetupMysqlDb(cfg Config) (*gorm.DB, error) {
-	// dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
-	// 	cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
-	// return gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	dsn := fmt.Sprintf(
 		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",

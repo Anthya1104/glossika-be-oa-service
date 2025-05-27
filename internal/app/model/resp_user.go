@@ -6,5 +6,6 @@ type GetUserInfoResp struct {
 }
 
 type GetUserInfoRespData struct {
-	UserID string `json:"user_id"`
+	UserID   string `json:"user_id"`
+	UserName string `json:"user_name"`
 }
