@@ -14,8 +14,6 @@ func SetupRouter() *gin.Engine {
 
 	r.GET("api/users", handler.GetUserInfoAPI)
 
-	r.GET("/limiter", handler.RateLimiterHandler)
-
 	return r
 }
 
