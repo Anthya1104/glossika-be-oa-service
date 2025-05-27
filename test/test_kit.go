@@ -6,8 +6,11 @@ import (
 	"net/http"
 	"net/http/httptest"
 
+	"github.com/Anthya1104/gin-base-service/internal/app/database"
 	"github.com/Anthya1104/gin-base-service/internal/app/model"
 	"github.com/Anthya1104/gin-base-service/internal/app/router"
+	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"gorm.io/gorm/logger"
 )
 
 func HttpGet(path string, headers map[string]string) (resp *httptest.ResponseRecorder, err error) {
@@ -82,4 +85,18 @@ func getRespCustomErrorMsg(w *httptest.ResponseRecorder) string {
 	resp := model.CommonErrorRes{}
 	json.Unmarshal(w.Body.Bytes(), &resp)
 	return resp.Msg
+}
+
+func resetDbForTesting() {
+	database.GetSqlDb().Orm.Logger = logger.Default.LogMode(logger.Warn)
+
+	if err := database.DropTables(database.GetSqlDb().Orm); err != nil {
+		log.L.Fatal(err)
+	}
+
+	if err := database.AutoMigrate(database.GetSqlDb().Orm); err != nil {
+		log.L.Fatal(err)
+	}
+
+	log.L.Info("----- DB DATA HAS BEEN RESET -----")
 }

@@ -55,3 +55,11 @@ func AutoMigrate(db *gorm.DB) error {
 	return orm.AutoMigrate(db, models)
 
 }
+
+// Only use for integration test
+func DropTables(db *gorm.DB) error {
+	models := []interface{}{
+		&dbModel.UserInfo{},
+	}
+	return orm.DropTables(db, models)
+}

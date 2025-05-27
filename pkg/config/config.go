@@ -96,6 +96,13 @@ func Setup() error {
 		"database.password",
 	}
 
+	// for test env init
+	viper.BindEnv("database.host", "SQL_HOST")
+	viper.BindEnv("database.port", "SQL_PORT")
+	viper.BindEnv("database.name", "SQL_DATABASE")
+	viper.BindEnv("database.user", "SQL_USERNAME")
+	viper.BindEnv("database.password", "SQL_PASSWORD")
+
 	for _, env := range requiredEnvs {
 		if viper.GetString(env) == "" {
 			return fmt.Errorf("required environment variable %s is not set", env)

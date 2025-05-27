@@ -49,3 +49,13 @@ func AutoMigrate(db *gorm.DB, models []interface{}) error {
 	}
 	return nil
 }
+
+// Only use for testing
+func DropTables(db *gorm.DB, models []interface{}) error {
+	for _, model := range models {
+		if err := db.Migrator().DropTable(model); err != nil {
+			return err
+		}
+	}
+	return nil
+}
