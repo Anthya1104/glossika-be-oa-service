@@ -13,6 +13,10 @@ const (
 
 	DBGetUserInfoFailed ErrCode = "1001"
 
+	DBCountUserFailed  ErrCode = "1011"
+	DBDuplicatedUser   ErrCode = "1012"
+	DBCreateUserFailed ErrCode = "1013"
+
 	BadRequest     ErrCode = "2000"
 	BadHeader      ErrCode = "2001"
 	BadQuery       ErrCode = "2002"
