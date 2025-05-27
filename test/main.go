@@ -1,11 +1,11 @@
 package test
 
 import (
-	"github.com/Anthya1104/gin-base-service/internal/app/database"
-	"github.com/Anthya1104/gin-base-service/internal/app/router"
-	"github.com/Anthya1104/gin-base-service/pkg/config"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
-	"github.com/Anthya1104/gin-base-service/pkg/orm"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/router"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/orm"
 )
 
 func Setup() {

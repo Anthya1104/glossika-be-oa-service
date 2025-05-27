@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/Anthya1104/gin-base-service/internal/app/database"
-	"github.com/Anthya1104/gin-base-service/internal/app/model"
-	"github.com/Anthya1104/gin-base-service/pkg/errcode"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
-	"github.com/Anthya1104/gin-base-service/test/container"
-	"github.com/Anthya1104/gin-base-service/test/data"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/test/container"
+	"github.com/Anthya1104/glossika-be-oa-service/test/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )

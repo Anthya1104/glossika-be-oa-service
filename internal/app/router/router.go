@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/Anthya1104/gin-base-service/internal/app/handler"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/handler"
 	"github.com/gin-gonic/gin"
 )
 

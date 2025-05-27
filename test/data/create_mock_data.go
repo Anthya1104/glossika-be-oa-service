@@ -1,8 +1,8 @@
 package data
 
 import (
-	"github.com/Anthya1104/gin-base-service/internal/app/database"
-	dbModel "github.com/Anthya1104/gin-base-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
+	dbModel "github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
 )
 
 func (m *MockDataManager) CreateUserInfo(userId string, userName string) (userInfo dbModel.UserInfo, err error) {

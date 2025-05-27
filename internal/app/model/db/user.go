@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/Anthya1104/gin-base-service/pkg/config"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
 )
 
 func (UserInfo) TableName() string {

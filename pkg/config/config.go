@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 	"github.com/spf13/viper"
 )
 

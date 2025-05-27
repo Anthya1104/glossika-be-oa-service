@@ -3,10 +3,10 @@ package database
 import (
 	"context"
 
-	dbModel "github.com/Anthya1104/gin-base-service/internal/app/model/db"
-	"github.com/Anthya1104/gin-base-service/pkg/errcode"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
-	"github.com/Anthya1104/gin-base-service/pkg/orm"
+	dbModel "github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/orm"
 	"gorm.io/gorm"
 )
 

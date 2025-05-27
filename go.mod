@@ -1,4 +1,4 @@
-module github.com/Anthya1104/gin-base-service
+module github.com/Anthya1104/glossika-be-oa-service
 
 go 1.24.1
 

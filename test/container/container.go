@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 )
 
 type TestContainers struct {

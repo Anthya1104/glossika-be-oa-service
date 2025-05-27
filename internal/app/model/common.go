@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Anthya1104/gin-base-service/pkg/config"
+import "github.com/Anthya1104/glossika-be-oa-service/pkg/config"
 
 type CommonResInterface interface {
 	SetVersion()

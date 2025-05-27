@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"github.com/Anthya1104/gin-base-service/internal/app/database"
-	"github.com/Anthya1104/gin-base-service/internal/app/model"
-	"github.com/Anthya1104/gin-base-service/internal/app/router"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/router"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 	"gorm.io/gorm/logger"
 )
 

@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Anthya1104/gin-base-service/internal/app/database"
-	"github.com/Anthya1104/gin-base-service/internal/app/model"
-	"github.com/Anthya1104/gin-base-service/pkg/errcode"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
 )
 
 func GetUserInfo(ctx context.Context, userId string) (resp model.GetUserInfoResp, wrapErr errcode.WrapErr) {

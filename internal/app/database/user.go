@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	dbModel "github.com/Anthya1104/gin-base-service/internal/app/model/db"
-	"github.com/Anthya1104/gin-base-service/pkg/errcode"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
+	dbModel "github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 )
 
 func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, userId string) (userInfo dbModel.UserInfo, wrapErr errcode.WrapErr) {

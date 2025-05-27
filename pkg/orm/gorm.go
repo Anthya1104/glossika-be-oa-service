@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Anthya1104/gin-base-service/pkg/config"
-	"github.com/Anthya1104/gin-base-service/pkg/log"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

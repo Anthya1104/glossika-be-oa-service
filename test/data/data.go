@@ -1,7 +1,7 @@
 package data
 
 import (
-	dbModel "github.com/Anthya1104/gin-base-service/internal/app/model/db"
+	dbModel "github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
 )
 
 type MockDataManager struct {
