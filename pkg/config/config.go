@@ -3,9 +3,11 @@ package config
 import (
 	"errors"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 
+	"github.com/Anthya1104/gin-base-service/pkg/log"
 	"github.com/spf13/viper"
 )
 
@@ -65,7 +67,13 @@ func IsProduction() bool {
 }
 
 func Setup() error {
-	viper.SetConfigName("config")
+	configName := os.Getenv("CONFIG_NAME")
+	if configName == "" {
+		configName = "config"
+	}
+	log.L.Infof("using config file: %s", configName)
+
+	viper.SetConfigName(configName)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("configs")
 	if err := viper.ReadInConfig(); err != nil {
@@ -75,6 +83,8 @@ func Setup() error {
 	}
 
 	viper.AutomaticEnv()
+
+	log.L.Infof("viper settings: %+v\n", viper.AllSettings())
 
 	requiredEnvs := []string{
 		"server.port",
@@ -98,7 +108,7 @@ func Setup() error {
 		Host:              viper.GetString("server.host"),
 		Port:              viper.GetString("server.port"),
 		DeployEnvironment: viper.GetString("server.env"),
-		LogLevel:          viper.GetString("logginglevel"),
+		LogLevel:          viper.GetString("logging.level"),
 		SQLHost:           viper.GetString("database.host"),
 		SQLPort:           viper.GetString("database.port"),
 		SQLDatabase:       viper.GetString("database.name"),
