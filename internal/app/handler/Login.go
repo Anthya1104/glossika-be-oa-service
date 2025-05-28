@@ -7,6 +7,7 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/util"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -55,10 +56,20 @@ func UserLogin(c *gin.Context) {
 	}
 
 	// TODO: gen JWT token
+	token, err := util.GenerateToken(user.ID, user.Email)
+	if err != nil {
+		err := fmt.Errorf("failed to generate JWT token: %w", err)
+		respondError(c, errcode.WrapErr{
+			HttpStatus: http.StatusInternalServerError,
+			ErrCode:    errcode.JWTGenerateFailed,
+			RawErr:     err,
+		})
+		return
+	}
 
 	resp := model.UserLoginResp{
 		Data: model.UserLoginRespData{
-			Token: "dummy-jwt-token",
+			Token: token,
 		},
 	}
 

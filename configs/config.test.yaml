@@ -11,3 +11,6 @@ server:
   env: DEVELOP
 logging:
   level: DEBUG
+util:
+  # should not list the real secret in the config file if this is a productive level project
+  jwt_secret: 4pJIfEt5T8GRg+h57Bwao6sk/t8KfAEg5Q9Ch49ko4Q=

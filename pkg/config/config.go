@@ -44,6 +44,12 @@ type envVariable struct {
 	SQLPassword string
 }
 
+var UtilVariable utilVariable
+
+type utilVariable struct {
+	JWTSecret string
+}
+
 func Validate() (err error) {
 	port, err := strconv.ParseUint(EnvVariable.Port, 10, 16)
 	if err != nil || port <= 0 || port > uint64(65535) {
@@ -94,6 +100,7 @@ func Setup() error {
 		"database.name",
 		"database.user",
 		"database.password",
+		"util.jwt_secret",
 	}
 
 	// for test env init
@@ -132,6 +139,11 @@ func Setup() error {
 	}
 	if EnvVariable.LogLevel == "" {
 		EnvVariable.LogLevel = "INFO"
+	}
+
+	// init util variable
+	UtilVariable = utilVariable{
+		JWTSecret: viper.GetString("util.jwt_secret"),
 	}
 
 	if err := Validate(); err != nil {

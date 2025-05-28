@@ -25,7 +25,9 @@ const (
 	BadRequestBody ErrCode = "2004"
 
 	UserInvalidPassword ErrCode = "3000"
-	UserNotActivated
+	UserNotActivated    ErrCode = "3001"
+
+	JWTGenerateFailed ErrCode = "4000"
 )
 
 var ErrCodeMsg = map[ErrCode]string{
