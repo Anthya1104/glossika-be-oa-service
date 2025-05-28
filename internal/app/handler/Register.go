@@ -7,6 +7,8 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/util"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -81,9 +83,26 @@ func UserRegisterHandler(c *gin.Context) {
 		return
 	}
 
-	// TODO: gen email verify token and send email
+	token, err := util.GenerateTokenWithType(user.ID, user.Email, "email_verify")
+	if err != nil {
+		err = fmt.Errorf("failed to generate token: %w", err)
+		respondError(c, errcode.WrapErr{
+			HttpStatus: http.StatusInternalServerError,
+			ErrCode:    errcode.JWTGenerateFailed,
+			RawErr:     err,
+		})
+		return
+	}
+	// should be https in productive environment, here use http for testing purpose
+	verifyLink := fmt.Sprintf("http://%s:%s/api/v1/users/verify?token=%s", config.EnvVariable.Host, config.EnvVariable.Port, token)
 
-	resp := model.CommonSuccessRes{}
+	// fake send email
+
+	// response the verify mail for test since the email sending is not implemented yet
+	// should not response in the productive environment
+	resp := model.CommonSuccessRes{
+		Data: verifyLink,
+	}
 
 	respondSuccess(c, http.StatusOK, &resp, false)
 
