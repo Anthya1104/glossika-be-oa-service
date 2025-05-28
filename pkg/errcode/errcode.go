@@ -29,6 +29,8 @@ const (
 	UserNotActivated ErrCode = "3001"
 
 	JWTGenerateFailed ErrCode = "4000"
+
+	BcryptHashFailed ErrCode = "5000"
 )
 
 var ErrCodeMsg = map[ErrCode]string{
