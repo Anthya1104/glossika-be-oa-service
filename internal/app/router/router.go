@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/handler"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +15,15 @@ func SetupRouter() *gin.Engine {
 
 	r.GET("api/users", handler.GetUserInfoAPI)
 
-	r.GET("/limiter", handler.RateLimiterHandler)
+	r.POST("api/v1/users", handler.UserRegisterHandler)
+
+	r.POST("/api/v1/auth/login", handler.UserLoginHandler)
+
+	// auth API group
+	auth := r.Group("/api/v1")
+	auth.Use(middleware.JWTAuthMiddleware())
+	// TODO: remove this route after testing
+	// auth.GET("/test-api", handler.TryTestHandler)
 
 	return r
 }

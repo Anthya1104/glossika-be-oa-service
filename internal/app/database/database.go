@@ -50,7 +50,9 @@ func NewSqlDb(conf orm.Config) error {
 
 func AutoMigrate(db *gorm.DB) error {
 	models := []interface{}{
+		//TODO: remove redundant sample after feature completed
 		&dbModel.UserInfo{},
+		&dbModel.User{},
 	}
 	return orm.AutoMigrate(db, models)
 
