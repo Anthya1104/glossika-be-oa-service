@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
@@ -47,25 +48,15 @@ func UserRegisterHandler(c *gin.Context) {
 		return
 	}
 
-	// TODO: race condition might happen here, could refactor as create user directly and catch the duplicate eror
-	// Check if the email already exists
-	if count, err := database.GetSqlDb().CountUserByEmail(c, req.Email); err.RawErr != nil {
-		respondError(c, err)
-		return
-	} else if count > 0 {
-		err := fmt.Errorf("email already exists: %s", req.Email)
-		respondError(c, errcode.WrapErr{
-			HttpStatus: http.StatusConflict,
-			ErrCode:    errcode.DBDuplicatedUser,
-			RawErr:     err,
-		})
-		return
-	}
-
 	// Hash password
 	hashed, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+		err := fmt.Errorf("failed to hash password: %w", err)
+		respondError(c, errcode.WrapErr{
+			HttpStatus: http.StatusInternalServerError,
+			ErrCode:    errcode.BcryptHashFailed,
+			RawErr:     err,
+		})
 		return
 	}
 
@@ -75,7 +66,16 @@ func UserRegisterHandler(c *gin.Context) {
 		Password: string(hashed),
 	}
 	// TODO: refactor to database package as a method
-	if err := database.GetSqlDb().Orm.Create(&user).Error; err != nil {
+	if err := database.GetSqlDb().Orm.Create(&user).Error; err != nil && strings.Contains(err.Error(), "Duplicate entry") {
+		err := fmt.Errorf("email already exists: %s", req.Email)
+		respondError(c, errcode.WrapErr{
+			HttpStatus: http.StatusConflict,
+			ErrCode:    errcode.DBDuplicatedUser,
+			RawErr:     err,
+		})
+		return
+
+	} else if err != nil {
 		err := fmt.Errorf("failed to create user: %w", err)
 		respondError(c, errcode.WrapErr{
 			HttpStatus: http.StatusInternalServerError,
