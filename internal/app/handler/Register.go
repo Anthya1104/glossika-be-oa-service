@@ -7,6 +7,7 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/database"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/model/db"
+	"github.com/Anthya1104/glossika-be-oa-service/internal/app/service"
 	"github.com/Anthya1104/glossika-be-oa-service/internal/app/util"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/errcode"
@@ -46,6 +47,7 @@ func UserRegisterHandler(c *gin.Context) {
 		return
 	}
 
+	// TODO: race condition might happen here, could refactor as create user directly and catch the duplicate eror
 	// Check if the email already exists
 	if count, err := database.GetSqlDb().CountUserByEmail(c, req.Email); err.RawErr != nil {
 		respondError(c, err)
@@ -97,6 +99,7 @@ func UserRegisterHandler(c *gin.Context) {
 	verifyLink := fmt.Sprintf("http://%s:%s/api/v1/users/verify?token=%s", config.EnvVariable.Host, config.EnvVariable.Port, token)
 
 	// fake send email
+	service.SendEmail(c)
 
 	// response the verify mail for test since the email sending is not implemented yet
 	// should not response in the productive environment
