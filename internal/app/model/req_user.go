@@ -25,3 +25,8 @@ func (req UserRegisterReq) ValidateRegisterEmail() bool {
 	re := regexp.MustCompile(regex)
 	return re.MatchString(req.Email)
 }
+
+type UserLoginReq struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required"`
+}

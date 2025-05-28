@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func RegisterHandler(c *gin.Context) {
+func UserRegister(c *gin.Context) {
 	var req model.UserRegisterReq
 	if err := c.ShouldBindJSON(&req); err != nil {
 		err := fmt.Errorf("failed to bind request body: %w", err)
@@ -70,6 +70,7 @@ func RegisterHandler(c *gin.Context) {
 		Email:    req.Email,
 		Password: string(hashed),
 	}
+	// TODO: refactor to database package as a method
 	if err := database.GetSqlDb().Orm.Create(&user).Error; err != nil {
 		err := fmt.Errorf("failed to create user: %w", err)
 		respondError(c, errcode.WrapErr{
@@ -79,6 +80,8 @@ func RegisterHandler(c *gin.Context) {
 		})
 		return
 	}
+
+	// TODO: gen email verify token and send email
 
 	resp := model.CommonSuccessRes{}
 

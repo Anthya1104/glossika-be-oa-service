@@ -16,12 +16,16 @@ const (
 	DBCountUserFailed  ErrCode = "1011"
 	DBDuplicatedUser   ErrCode = "1012"
 	DBCreateUserFailed ErrCode = "1013"
+	DBUserNotFound     ErrCode = "1014"
 
 	BadRequest     ErrCode = "2000"
 	BadHeader      ErrCode = "2001"
 	BadQuery       ErrCode = "2002"
 	BadURLParam    ErrCode = "2003"
 	BadRequestBody ErrCode = "2004"
+
+	UserInvalidPassword ErrCode = "3000"
+	UserNotActivated
 )
 
 var ErrCodeMsg = map[ErrCode]string{
