@@ -9,23 +9,6 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 )
 
-func (db *SqlDb) CountUserByEmail(ctx context.Context, email string) (count int64, wrapErr errcode.WrapErr) {
-	err := db.Orm.WithContext(ctx).
-		Model(&dbModel.User{}).
-		Where("user_email = ? ", email).
-		Count(&count).Error
-
-	if err != nil {
-		wrapErr = errcode.WrapErr{
-			HttpStatus: http.StatusInternalServerError,
-			ErrCode:    errcode.DBCountUserFailed,
-			RawErr:     err,
-		}
-	}
-	log.C(ctx).Debugf("CountUserByEmail email=%v, count=%v, err=%v", email, count, wrapErr.RawErr)
-	return
-}
-
 func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, userId string) (userInfo dbModel.UserInfo, wrapErr errcode.WrapErr) {
 	err := db.Orm.WithContext(ctx).
 		Model(&dbModel.UserInfo{}).

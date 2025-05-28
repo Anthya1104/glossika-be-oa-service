@@ -5,6 +5,9 @@ database:
   name: testdb
   user: testuser
   password: testpswd
+redis:
+  host: localhost
+  port: 6379
 server:
   host: localhost
   port: 9999

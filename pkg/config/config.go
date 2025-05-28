@@ -42,6 +42,9 @@ type envVariable struct {
 	SQLDatabase string
 	SQLUsername string
 	SQLPassword string
+
+	RedisHost string
+	RedisPort string
 }
 
 var UtilVariable utilVariable
@@ -101,6 +104,8 @@ func Setup() error {
 		"database.user",
 		"database.password",
 		"util.jwt_secret",
+		"redis.port",
+		"redis.host",
 	}
 
 	// for test env init
@@ -128,6 +133,8 @@ func Setup() error {
 		SQLDatabase:       viper.GetString("database.name"),
 		SQLUsername:       viper.GetString("database.user"),
 		SQLPassword:       viper.GetString("database.password"),
+		RedisHost:         viper.GetString("redis.host"),
+		RedisPort:         viper.GetString("redis.port"),
 	}
 
 	// set default value

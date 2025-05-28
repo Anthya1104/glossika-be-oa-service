@@ -14,6 +14,7 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/config"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/orm"
+	"github.com/Anthya1104/glossika-be-oa-service/pkg/redis"
 )
 
 func main() {
@@ -23,6 +24,13 @@ func main() {
 		log.L.Fatal(err)
 	}
 
+	// TODO: only skip pswd in demo, should not be empty in productive environment
+	// setup redis
+	addrString := fmt.Sprintf("%s:%s", config.EnvVariable.RedisHost, config.EnvVariable.RedisPort)
+	redis.InitRedis(addrString, "", 0)
+	if err := redis.Ping(); err != nil {
+		log.L.Fatalf("Redis connect failed: %v", err)
+	}
 	// setup db
 	if err := database.NewSqlDb(orm.Config{
 		Host:     config.EnvVariable.SQLHost,
