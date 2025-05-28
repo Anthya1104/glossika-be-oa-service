@@ -27,7 +27,7 @@ func UserActivateHandler(c *gin.Context) {
 	userID := uint(claims["user_id"].(float64))
 
 	// set user as active in DB
-	// TODO: make this as method in database package and refactor with create user function as upsert
+	// TODO: make this as method in database package
 	if err := database.GetSqlDb().Orm.Model(&db.User{}).
 		Where("id = ?", userID).
 		Update("is_activated", true).Error; err != nil {

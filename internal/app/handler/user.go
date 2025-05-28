@@ -26,5 +26,4 @@ func GetUserInfoAPI(c *gin.Context) {
 
 	respondSuccess(c, http.StatusOK, &resp, false)
 
-	// c.String(http.StatusOK, "ok")
 }
