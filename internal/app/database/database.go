@@ -53,6 +53,8 @@ func AutoMigrate(db *gorm.DB) error {
 		//TODO: remove redundant sample after feature completed
 		&dbModel.UserInfo{},
 		&dbModel.User{},
+		&dbModel.Product{},
+		&dbModel.UserRecommendation{},
 	}
 	return orm.AutoMigrate(db, models)
 
