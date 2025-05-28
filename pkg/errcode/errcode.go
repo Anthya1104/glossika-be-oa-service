@@ -19,6 +19,10 @@ const (
 	DBUpdateUserFailed ErrCode = "1014"
 	DBUserNotFound     ErrCode = "1015"
 
+	DBGetUserRecommendationFailed ErrCode = "1020"
+
+	DBGetProductFailed ErrCode = "1030"
+
 	BadRequest     ErrCode = "2000"
 	BadHeader      ErrCode = "2001"
 	BadQuery       ErrCode = "2002"
