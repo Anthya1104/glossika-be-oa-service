@@ -24,7 +24,7 @@ const (
 	BadURLParam    ErrCode = "2003"
 	BadRequestBody ErrCode = "2004"
 
-	UserInvalidPassword ErrCode = "3000"
+	UserInvalidAuth ErrCode = "3000"
 	UserNotActivated    ErrCode = "3001"
 
 	JWTGenerateFailed ErrCode = "4000"

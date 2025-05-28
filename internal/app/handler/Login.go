@@ -13,7 +13,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func UserLogin(c *gin.Context) {
+func UserLoginHandler(c *gin.Context) {
 	var req model.UserLoginReq
 	if err := c.ShouldBindJSON(&req); err != nil {
 		respondError(c, errcode.WrapErr{
@@ -40,7 +40,7 @@ func UserLogin(c *gin.Context) {
 		err := fmt.Errorf("password mismatch for user %s: %w", user.Email, err)
 		respondError(c, errcode.WrapErr{
 			HttpStatus: http.StatusUnauthorized,
-			ErrCode:    errcode.UserInvalidPassword,
+			ErrCode:    errcode.UserInvalidAuth,
 			RawErr:     err,
 		})
 		return
@@ -55,7 +55,6 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 
-	// TODO: gen JWT token
 	token, err := util.GenerateToken(user.ID, user.Email)
 	if err != nil {
 		err := fmt.Errorf("failed to generate JWT token: %w", err)

@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func UserRegister(c *gin.Context) {
+func UserRegisterHandler(c *gin.Context) {
 	var req model.UserRegisterReq
 	if err := c.ShouldBindJSON(&req); err != nil {
 		err := fmt.Errorf("failed to bind request body: %w", err)
