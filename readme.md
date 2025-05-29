@@ -54,3 +54,4 @@ go run cmd/main.go
 - 目前 user activation 的部分是採寄送 activation link 並讓 user 點擊驗證的流程，因為不考慮 FE 所以直接回了 json response ，如果不想讓這些資料暴露給 user ，可以在這裡做一個 redirect 回 FE page 的機制並讓 FE 做 handling
 - 已知 bug : get recommendation response total 缺漏， paging slice 數量會變成 1.5 倍 (e.g. page_size 指定 50 會一次給出 75 筆資料) ，需要再做 debug
 - doc: API doc 目前只寫了 200 OK response，時間充足的情況下會想再補上幾個常見的 bad response 範例
+- 時間上考量再加上這次 DEMO 的功能較簡單，所以 auth 是直接做在 server 內部，如果未來可能擴充多平台或支援不同產品，或許可以考慮把 auth 相關 feature 另開 account server ，搭配 API Gateway 改用 OAuth2.0 架構
