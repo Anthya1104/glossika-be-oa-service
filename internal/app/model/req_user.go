@@ -2,6 +2,14 @@ package model
 
 import "regexp"
 
+// compile regexps once at package level
+var (
+	reUpper   = regexp.MustCompile(`[A-Z]`)
+	reLower   = regexp.MustCompile(`[a-z]`)
+	reSpecial = regexp.MustCompile(`[()[\]{}<>+\-*/?,.:;"'_\\|~` + "`" + `!@#$%^&=]`)
+	reEmail   = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
+)
+
 type UserRegisterReq struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required,min=6,max=60"`
@@ -13,17 +21,12 @@ func (req UserRegisterReq) ValidateRegisterPassword() bool {
 	if len(password) < 6 || len(password) > 16 {
 		return false
 	}
-	hasUpper := regexp.MustCompile(`[A-Z]`).MatchString(password)
-	hasLower := regexp.MustCompile(`[a-z]`).MatchString(password)
-	hasSpecial := regexp.MustCompile(`[()[\]{}<>+\-*/?,.:;"'_\\|~` + "`" + `!@#$%^&=]`).MatchString(password)
-	return hasUpper && hasLower && hasSpecial
+	return reUpper.MatchString(password) && reLower.MatchString(password) && reSpecial.MatchString(password)
 }
 
 func (req UserRegisterReq) ValidateRegisterEmail() bool {
 	//validate email
-	regex := `^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`
-	re := regexp.MustCompile(regex)
-	return re.MatchString(req.Email)
+	return reEmail.MatchString(req.Email)
 }
 
 type UserLoginReq struct {
