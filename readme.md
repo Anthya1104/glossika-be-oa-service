@@ -65,3 +65,5 @@ go run cmd/main.go
 - Known issues :
   1. get recommendation API paging slice 數量會變成 1.5 倍 (e.g. page_size 指定 50 會一次給出 75 筆資料) ，問題應該是發生在最後 slice data 時，還需要再做 debug
   2. test container 在跑起來的時候會有一段時間 server 無法連入 DB ，推測可能是 run test 時 sql container 還沒完全起來，這裡需要再思考怎麼改寫法排除
+- Known improvement
+  1. redis 取得 cache 還沒有做 error handling ，雖然拿不到就會回 DB 撈，但考量到題目情境下，這個 DB operation 蠻耗時的，這裡如果能補上相關處置(如 logging, notification 機制)可能會更好
