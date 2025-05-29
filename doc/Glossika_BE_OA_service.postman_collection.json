@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "379509c8-e657-4cc9-b1b2-79ff9a8b9022",
+		"name": "Glossika BE OA service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21736199"
+	},
+	"item": [
+		{
+			"name": "GET check health API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{local_host_go}}/health",
+					"protocol": "http",
+					"host": [
+						"{{local_host_go}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET check health API",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{local_host_go}}/health",
+							"protocol": "http",
+							"host": [
+								"{{local_host_go}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 May 2025 07:53:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						}
+					],
+					"cookie": [],
+					"body": "ok"
+				}
+			]
+		},
+		{
+			"name": "POST user register API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test92@gmail.com\",\r\n    \"password\":\"testpswD@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local_host_go}}/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"{{local_host_go}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST user register API",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test92@gmail.com\",\r\n    \"password\":\"testpswD@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{local_host_go}}/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"{{local_host_go}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 May 2025 07:53:36 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "276"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"version\": \"1.0.0\",\n    \"error\": \"\",\n    \"data\": \"http://localhost:9999/api/v1/users/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q5MkBnbWFpbC5jb20iLCJleHAiOjE3NDg1OTE2MTYsInR5cGUiOiJlbWFpbF92ZXJpZnkiLCJ1c2VyX2lkIjoxN30.4hVtI4TtBWeF_OFwlt6NWFfmdFfFR8IenglP1GIq9sQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST user login API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test2@gmail.com\",\r\n    \"password\":\"testpswD@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local_host_go}}/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"{{local_host_go}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST user login API",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test2@gmail.com\",\r\n    \"password\":\"testpswD@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{local_host_go}}/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{local_host_go}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 May 2025 07:55:13 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"version\": \"1.0.0\",\n    \"error\": \"\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MTc0ODU5MTcxMywidXNlcl9pZCI6MX0.aKRpXkmqUGOJyn1qePYow0CP5PWFjcMLuO0FMp58l50\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET recommendation API",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MTc0ODU0MDIwMSwidXNlcl9pZCI6MX0.xgPU9u88Wl6fa4qlixV0lnMW9E7AOo-04-9k0BnROsI",
+						"description": "please get the auth token by POST user login API",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page\":1,\r\n    \"pageSize\":20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local_host_go}}/api/v1/recommendations",
+					"protocol": "http",
+					"host": [
+						"{{local_host_go}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"recommendations"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET recommendation API",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MTc0ODU0MDIwMSwidXNlcl9pZCI6MX0.xgPU9u88Wl6fa4qlixV0lnMW9E7AOo-04-9k0BnROsI",
+								"description": "please get the auth token by POST user login API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page\":1,\r\n    \"pageSize\":20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{local_host_go}}/api/v1/recommendations",
+							"protocol": "http",
+							"host": [
+								"{{local_host_go}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recommendations"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 May 2025 07:54:04 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "169"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"version\": \"1.0.0\",\n    \"error\": \"\",\n    \"data\": {\n        \"total\": 0,\n        \"recommendation_list\": [\n            {\n                \"product_id\": 1,\n                \"product_name\": \"product-name-1\",\n                \"description\": \"this is description\",\n                \"price\": 20\n            }\n        ]\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_host_go",
+			"value": "localhost:9999",
+			"type": "string"
+		}
+	]
+}
