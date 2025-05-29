@@ -1,21 +1,67 @@
 # Flow
 
-## Mermaid Sequence Diagram
-
 ```mermaid
 sequenceDiagram
     participant Client
-    participant API_Server
-    participant Database
+    participant BE
+    participant DB
 
-    Client->>API_Server: POST /api/v1/users (register user)
-    API_Server->>Database: Insert user data (is_activated = false)
-    Database-->>API_Server: User created
-    API_Server-->>Client: 201 Created + message
+    Client->>BE: POST /api/v1/users (register user)
+    BE->>DB: Insert user data (is_activated = false)
+    DB-->>BE: User created
+    BE-->>Client: 200 OK + message (in demo, with activation link)
 
     Client->>Client: Click activation link (email)
-    Client->>API_Server: GET /api/v1/users/verify?token=abcdefg123456
-    API_Server->>Database: Update user.is_activated = true
-    Database-->>API_Server: Update success
-    API_Server-->>Client: 200 OK + success message
+    Client->>BE: GET /api/v1/users/verify?token=abcdefg123456
+    BE->>DB: Update user.is_activated = true
+    DB-->>BE: Update success
+    BE-->>Client: 200 OK + success message
+```
+
+# APIs
+
+## User Registration API
+
+**POST** `/api/v1/users`
+
+**Request Body**
+
+```
+{
+    "email":"test92@gmail.com", //required, string
+    "password":"testpswD@" //required, string
+}
+```
+
+**Response**
+
+`200` OK
+
+```
+{
+    "version": "1.0.0",
+    "error": "",
+    "data": "" // would get activation link in this demo
+}
+```
+
+## Get Activation API
+
+**GET** `/api/v1/users/verify?token=abcdefg123456`
+
+**Request Header**
+
+```
+Content-Type: application/json
+```
+
+**Response**
+`200` OK
+
+```
+{
+    "version": "1.0.0",
+    "error": "",
+    "data": ""
+}
 ```
