@@ -65,6 +65,7 @@ func GetRecommendationListHandler(c *gin.Context) {
 		redis.Client.Set(c, cacheKey, b, time.Minute*10)
 	}
 
+	// TODO: the sliced data would be 1.5x by the pageSize, need to check the limit log
 	pagedrecommendationList, total := util.SliceDataByPaging(productList, offset, req.PageSize)
 	log.C(c).Debugf("GetRecommendationListHandler sliced data: %v, total: %v\n", pagedrecommendationList, total)
 
@@ -78,6 +79,7 @@ func GetRecommendationListHandler(c *gin.Context) {
 			Price:       p.Price,
 		})
 	}
+	// TODO: fixed the empty resp.Data.Total issue
 
 	respondSuccess(c, http.StatusOK, &resp, false)
 }
