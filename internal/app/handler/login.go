@@ -24,12 +24,13 @@ func UserLoginHandler(c *gin.Context) {
 		return
 	}
 
+	// TODO: extract the logic as function in database layer
 	// find the user from DB
 	var user db.User
 	if err := database.GetSqlDb().Orm.Where("user_email = ?", req.Email).First(&user).Error; err != nil {
 		err := fmt.Errorf("failed to find user by email: %w", err)
 		respondError(c, errcode.WrapErr{
-			HttpStatus: http.StatusUnauthorized,
+			HttpStatus: http.StatusBadRequest,
 			ErrCode:    errcode.DBUserNotFound,
 			RawErr:     err,
 		})
