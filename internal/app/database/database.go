@@ -64,6 +64,9 @@ func AutoMigrate(db *gorm.DB) error {
 func DropTables(db *gorm.DB) error {
 	models := []interface{}{
 		&dbModel.UserInfo{},
+		&dbModel.Product{},
+		&dbModel.User{},
+		&dbModel.UserRecommendation{},
 	}
 	return orm.DropTables(db, models)
 }
