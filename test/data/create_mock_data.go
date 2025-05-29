@@ -16,15 +16,3 @@ func (m *MockDataManager) CreateUser(email string) (user dbModel.User, err error
 
 	return
 }
-
-func (m *MockDataManager) CreateUserInfo(userId string, userName string) (userInfo dbModel.UserInfo, err error) {
-	userInfo = dbModel.UserInfo{
-		Id:       userId,
-		UserName: userName,
-	}
-	if err = database.GetSqlDb().Orm.Create(&userInfo).Error; err != nil {
-		return
-	}
-
-	return
-}
