@@ -62,6 +62,5 @@ go run cmd/main.go
 - 時間上考量再加上這次 DEMO 的功能較簡單，所以 auth 是直接做在 server 內部，如果未來可能擴充多平台或支援不同產品，或許可以考慮把 auth 相關 feature 另開 account server ，搭配 API Gateway 改用 OAuth2.0 架構
 - Test 目前是直接 run 一個 DB container 來做 feature test ，但其實 sql DB 的部分有把 db repo 抽成抽象 interface ，未來可以替換用 gomock+mockgen 直接 mock DB response
 - Known issues :
-  1. get recommendation response total 沒有處理到賦值，目前會是空的，需要補上相關邏輯
-  2. get recommendation API paging slice 數量會變成 1.5 倍 (e.g. page_size 指定 50 會一次給出 75 筆資料) ，問題應該是發生在最後 slice data 時，還需要再做 debug
-  3. test container 在跑起來的時候會有一段時間 server 無法連入 DB ，推測可能是 run test 時 sql container 還沒完全起來，這裡需要再思考怎麼改寫法排除
+  1. get recommendation API paging slice 數量會變成 1.5 倍 (e.g. page_size 指定 50 會一次給出 75 筆資料) ，問題應該是發生在最後 slice data 時，還需要再做 debug
+  2. test container 在跑起來的時候會有一段時間 server 無法連入 DB ，推測可能是 run test 時 sql container 還沒完全起來，這裡需要再思考怎麼改寫法排除
