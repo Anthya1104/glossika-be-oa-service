@@ -51,6 +51,10 @@ func TestUserRegistryTestSuite(t *testing.T) {
 	log.L.Info("----- FINISH TestUserRegistryTestSuite -----")
 }
 
+// TODO: complete all test cases
+
+// 400 when missing req body
+
 func (suite *UserRegistryTestSuite) Test_400_when_missing_user_email() {
 	log.L.Info("Running Test_400_when_missing_user_email")
 
@@ -64,6 +68,8 @@ func (suite *UserRegistryTestSuite) Test_400_when_missing_user_email() {
 	assert.Equal(t, string(errcode.BadRequestBody), getRespCustomErrorcode(w))
 	assert.Equal(t, errcode.ErrCodeMsg[errcode.BadRequestBody], getRespCustomErrorMsg(w))
 }
+
+// 400 when invalid email/password
 
 func (suite *UserRegistryTestSuite) Test_400_when_registered_user_email_exists() {
 	log.L.Info("Running Test_400_when_registered_user_email_exists")
