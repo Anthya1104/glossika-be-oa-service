@@ -9,20 +9,21 @@ import (
 	"github.com/Anthya1104/glossika-be-oa-service/pkg/log"
 )
 
-func (db *SqlDb) GetUserInfoByUserId(ctx context.Context, userId string) (userInfo dbModel.UserInfo, wrapErr errcode.WrapErr) {
+func (db *SqlDb) BatchGetProducts(ctx context.Context, productIDList []uint) (products []dbModel.Product, wrapErr errcode.WrapErr) {
+
 	err := db.Orm.WithContext(ctx).
-		Model(&dbModel.UserInfo{}).
-		Where("id = ? ", userId).
-		Find(&userInfo).Error
+		Model(&dbModel.Product{}).
+		Where("id IN ?", productIDList).
+		Find(&products).Error
 
 	if err != nil {
+		log.C(ctx).Error("BatchGetProducts failed to get list: %w", err)
 		wrapErr = errcode.WrapErr{
 			HttpStatus: http.StatusInternalServerError,
-			ErrCode:    errcode.DBGetUserInfoFailed,
+			ErrCode:    errcode.DBGetProductFailed,
 			RawErr:     err,
 		}
 	}
-	log.C(ctx).Debugf("GetUserInfoByUserId userId=%v, userInfo=%v, err=%v", userId, userInfo, wrapErr.RawErr)
 
 	return
 }

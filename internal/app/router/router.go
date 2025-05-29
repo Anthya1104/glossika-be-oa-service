@@ -26,8 +26,7 @@ func SetupRouter() *gin.Engine {
 	// auth API group
 	auth := r.Group("/api/v1")
 	auth.Use(middleware.JWTAuthMiddleware())
-	// TODO: remove this route after testing
-	// auth.GET("/test-api", handler.TryTestHandler)
+	auth.GET("/recommendations", handler.GetRecommendationListHandler)
 
 	return r
 }
