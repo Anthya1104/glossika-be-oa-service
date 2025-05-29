@@ -31,7 +31,7 @@ go run cmd/main.go
 
 3. the db schema should be auto-migrated, if it's not work, try the SQL commands inside `./sql`, and make sure the `user` table and `product` table are migrated bofere `user_recommendation` table
 
-4. insert the mock data by running commands in `./sql/mock_data.sql`
+4. insert the mock data by running commands in `./sql/mock_data.sql`(please make sure you've registered at least one user and made it activated)
 
 5. the server would be run on port `:9999`, while the mysql db and redis would be on `:3306` and `:6379` correspondingly. If there is any conflict on your machine, please modify the `./docker-compose.yaml`, `./configs/config.yaml` files
 
